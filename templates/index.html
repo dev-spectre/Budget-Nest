@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Nest</title>
+
+    <link rel="stylesheet" href="../static/css/signin.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet" />
+
+    <script type="module" src="../static/js/signin.js"></script>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="container flex">
+        <hgroup class="clr-text-secondary">
+          <h1>Budget Nest</h1>
+          <p>Nest, Invest and Rest Easy</p>
+        </hgroup>
+        <form action="" class="signin">
+          <h2 class="text-center accent-clr">Welcome Back!</h2>
+          <h2>Sign In</h2>
+          <article>
+            <label for="email">Email ID</label>
+            <input type="email" name="email" id="email" required pattern="[a-zA-Z]([.\-+_]?[a-zA-Z0-9]+)*@[a-zA-Z]+(-?[a-zA-Z]+)+(\.[a-zA-Z]+-?[a-zA-Z]+)?(\.[a-zA-Z]{2,}){1,2}$"/>
+          </article>
+          <article>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"  required/>
+            <label class="control control-checkbox" for="show-password">
+              Show password
+              <input type="checkbox" id="show-password"/>
+              <div class="control_indicator"></div>
+            </label>
+            <label class="control control-checkbox" for="remember-me" >
+              Remember me
+              <input type="checkbox" id="remember-me" name="rememberMe" checked />
+              <div class="control_indicator"></div>
+            </label>
+          </article>
+          <article>
+            <button type="button" class="btn">Sign in</button>
+            <a href="#" class="forgot-password">Forgot Password</a>
+          </article>
+          <p class="text-center">Don't have an account? <a href="/signup">Sign Up</a></p>
+        </form>
+      </div>
+    </div>
+    <dialog>
+      <p class="dialog-message"></p>
+      <button class="close">Ok</button>
+    </dialog>
+  </body>
+</html>

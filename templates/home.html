@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Nest</title>
+
+    <link rel="stylesheet" href="../static/css/home.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet" />
+
+    <script defer type="module" src="../static/js/home.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav--primary">
+        <div class="container">
+          <h1 class="logo"><a href="#">Budget Nest</a></h1>
+          <nav>
+            <ul>
+              <li><a href="#" class="active">Home</a></li>
+              <li><a href="/transaction">Transaction</a></li>
+              <li><a href="/history">History</a></li>
+            </ul>
+          </nav>
+          <div class="account">
+            <button>
+              <p class="username"></p>
+              <img src="../static/assets/profile.svg" alt="profile" class="profile" />
+            </button>
+            <div class="account-info hidden">
+              <div>
+                <img src="../static/assets/profile.svg" alt="profile" class="profile" />
+              </div>
+              <p class="username"></p>
+              <button class="logout-btn">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <section class="income">
+        <article class="net-income">
+          <h2>Net Income</h2>
+          <p>₹0</p>
+        </article>
+        <article>
+          <div class="total-income flex-between">
+            <h2>Total Income</h2>
+            <p>₹0</p>
+          </div>
+          <div class="total-expense flex-between">
+            <h2>Total Expenses</h2>
+            <p>₹0</p>
+          </div>
+        </article>
+      </section>
+      <section class="goals">
+        <h2>Monthly Goals</h2>
+        <div>
+          <article class="goal budget">
+            <div>
+              <article class="goal__amount">
+                <h3>Budget</h3>
+                <p>₹0</p>
+              </article>
+              <article class="goal__progress">
+                <h3>Spent</h3>
+                <p>₹0</p>
+              </article>
+            </div>
+            <div class="progress-bar">
+              <div class="bar" data-value="0"></div>
+            </div>
+            <button type="button" class="edit">
+              <svg width="29" height="29" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.1111 0C16.5218 0.000455473 16.9167 0.157694 17.2153 0.439589C17.5139 0.721484 17.6936 1.10676 17.7177 1.51669C17.7417 1.92663 17.6084 2.33028 17.3448 2.64517C17.0812 2.96007 16.7074 3.16244 16.2996 3.21094L16.1111 3.22222H3.22222V25.7778H25.7778V12.8889C25.7782 12.4782 25.9355 12.0833 26.2174 11.7847C26.4993 11.4861 26.8845 11.3064 27.2945 11.2823C27.7044 11.2583 28.1081 11.3916 28.423 11.6552C28.7379 11.9188 28.9402 12.2926 28.9887 12.7004L29 12.8889V25.7778C29.0003 26.5907 28.6932 27.3737 28.1405 27.9698C27.5877 28.5659 26.8301 28.931 26.0194 28.9919L25.7778 29H3.22222C2.40929 29.0003 1.62631 28.6932 1.03023 28.1405C0.434147 27.5877 0.0690255 26.8301 0.0080559 26.0194L1.61543e-07 25.7778V3.22222C-0.0002571 2.40929 0.306766 1.62631 0.859523 1.03023C1.41228 0.434147 2.16992 0.0690254 2.98056 0.00805574L3.22222 0H16.1111ZM26.1693 0.552611C26.4592 0.263662 26.8483 0.0959038 27.2574 0.0834103C27.6665 0.0709167 28.0651 0.214624 28.3721 0.485345C28.6791 0.756066 28.8716 1.1335 28.9104 1.54099C28.9492 1.94847 28.8315 2.35546 28.5811 2.67928L28.4474 2.83233L12.4974 18.7807C12.2075 19.0697 11.8184 19.2374 11.4093 19.2499C11.0001 19.2624 10.6016 19.1187 10.2946 18.848C9.98753 18.5773 9.79506 18.1998 9.75625 17.7923C9.71743 17.3849 9.83517 16.9779 10.0856 16.6541L10.2193 16.5026L26.1693 0.552611Z" />
+              </svg>
+            </button>
+            <dialog>
+              <p>Set you budget goal for the month</p>
+              <form>
+                <label for="budget-goal">Budget:</label>
+                <input type="number" name="budget_goal" id="budget-goal" min="0" pattern="*\d" />
+                <div class="flex-between">
+                  <button class="btn--cancel" type="button">Cancel</button>
+                  <button class="btn--save" type="button">Save</button>
+                </div>
+              </form>
+            </dialog>
+          </article>
+          <article class="goal savings">
+            <div>
+              <article class="goal__amount">
+                <h3>Savings Goal</h3>
+                <p>₹0</p>
+              </article>
+              <article class="goal__progress">
+                <h3>Saved</h3>
+                <p>₹0</p>
+              </article>
+            </div>
+            <div class="progress-bar">
+              <div class="bar" data-value="0"></div>
+            </div>
+            <button type="button" class="edit">
+              <svg width="29" height="29" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16.1111 0C16.5218 0.000455473 16.9167 0.157694 17.2153 0.439589C17.5139 0.721484 17.6936 1.10676 17.7177 1.51669C17.7417 1.92663 17.6084 2.33028 17.3448 2.64517C17.0812 2.96007 16.7074 3.16244 16.2996 3.21094L16.1111 3.22222H3.22222V25.7778H25.7778V12.8889C25.7782 12.4782 25.9355 12.0833 26.2174 11.7847C26.4993 11.4861 26.8845 11.3064 27.2945 11.2823C27.7044 11.2583 28.1081 11.3916 28.423 11.6552C28.7379 11.9188 28.9402 12.2926 28.9887 12.7004L29 12.8889V25.7778C29.0003 26.5907 28.6932 27.3737 28.1405 27.9698C27.5877 28.5659 26.8301 28.931 26.0194 28.9919L25.7778 29H3.22222C2.40929 29.0003 1.62631 28.6932 1.03023 28.1405C0.434147 27.5877 0.0690255 26.8301 0.0080559 26.0194L1.61543e-07 25.7778V3.22222C-0.0002571 2.40929 0.306766 1.62631 0.859523 1.03023C1.41228 0.434147 2.16992 0.0690254 2.98056 0.00805574L3.22222 0H16.1111ZM26.1693 0.552611C26.4592 0.263662 26.8483 0.0959038 27.2574 0.0834103C27.6665 0.0709167 28.0651 0.214624 28.3721 0.485345C28.6791 0.756066 28.8716 1.1335 28.9104 1.54099C28.9492 1.94847 28.8315 2.35546 28.5811 2.67928L28.4474 2.83233L12.4974 18.7807C12.2075 19.0697 11.8184 19.2374 11.4093 19.2499C11.0001 19.2624 10.6016 19.1187 10.2946 18.848C9.98753 18.5773 9.79506 18.1998 9.75625 17.7923C9.71743 17.3849 9.83517 16.9779 10.0856 16.6541L10.2193 16.5026L26.1693 0.552611Z" />
+              </svg>
+            </button>
+            <dialog>
+              <p>Set you savings goal for the month</p>
+              <form>
+                <label for="savings-goal">Savings:</label>
+                <input type="number" name="savings_goal" id="savings-goal" min="0" pattern="*\d" />
+                <div class="flex-between">
+                  <button class="btn--cancel" type="button">Cancel</button>
+                  <button class="btn--save" type="button">Save</button>
+                </div>
+              </form>
+            </dialog>
+          </article>
+        </div>
+      </section>
+      <section class="transactions">
+        <h2>Recent Transactions</h2>
+        <table>
+          <thead>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>To/From</th>
+            <tr class="separation-line">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </section>
+      <dialog class="alert">
+        <p class="dialog-message"></p>
+        <button class="close">Ok</button>
+      </dialog>
+    </main>
+  </body>
+</html>

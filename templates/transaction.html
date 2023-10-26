@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Nest</title>
+
+    <link rel="stylesheet" href="../static/css/transaction.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet" />
+
+    <script defer src="../static/js/transaction.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav--primary">
+        <div class="container">
+          <h1 class="logo"><a href="/home">Budget Nest</a></h1>
+          <nav>
+            <ul>
+              <li><a href="/home">Home</a></li>
+              <li><a href="#" class="active">Transaction</a></li>
+              <li><a href="/history">History</a></li>
+            </ul>
+          </nav>
+          <div class="account">
+            <button>
+              <p class="username"></p>
+              <img src="../static/assets/profile.svg" alt="profile" class="profile" />
+            </button>
+            <div class="account-info hidden">
+              <div>
+                <img src="../static/assets/profile.svg" alt="profile" class="profile" />
+              </div>
+              <p class="username"></p>
+              <button class="logout-btn">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <article>
+          <h2>Add Transaction</h2>
+          <form>
+            <p class="success-msg">Transaction Added!</p>
+            <section>
+              <div>
+                <input type="radio" name="income_expense" id="expense" value="expense" checked required />
+                <label for="expense">Expense</label>
+              </div>
+              <div>
+                <input type="radio" name="income_expense" id="income" value="income" required />
+                <label for="income">Income</label>
+              </div>
+            </section>
+            <article>
+              <label for="date">Date:</label>
+              <input required type="date" name="date" id="date" />
+            </article>
+            <article>
+              <label for="amount">Amount:</label>
+              <input required type="number" name="amount" id="amount" pattern="*\d" />
+            </article>
+            <article>
+              <label for="category">Category:</label>
+              <div class="flex">
+                <select name="category" id="category" required>
+                  <option value="N/A" selected>N/A</option>
+                  <option value="Housing">Housing</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Food">Food</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Debt">Debt</option>
+                  <option value="Lent">Lent</option>
+                  <option value="Savings">Savings</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Trave">Travel</option>
+                  <option value="Gifts/Donations">Gifts/Donations</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                  <option value="Other">Other</option>
+                </select>
+                <input type="text" placeholder="Custom Message" name="message">
+              </div>
+            </article>
+            <article>
+              <label for="to">To:</label>
+              <input type="text" name="counterparty" id="to" />
+            </article>
+            <article>
+              <label for="from">From:</label>
+              <input type="text" name="counterparty" id="from" disabled />
+            </article>
+            <button type="submit">Save</button>
+          </form>
+        </article>
+      </div>
+    </main>
+    <dialog class="alert">
+      <p class="dialog-message"></p>
+      <button class="close">Ok</button>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Nest</title>
+
+    <link rel="stylesheet" href="../static/css/history.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+    <script defer src="../static/js/history.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav--primary">
+        <div class="container">
+          <h1 class="logo"><a href="/home">Budget Nest</a></h1>
+          <nav>
+            <ul>
+              <li><a href="/home">Home</a></li>
+              <li><a href="/transaction">Transaction</a></li>
+              <li><a href="#" class="active">History</a></li>
+            </ul>
+          </nav>
+          <div class="account">
+            <button>
+              <p class="username"></p>
+              <img src="../static/assets/profile.svg" alt="profile" class="profile" />
+            </button>
+            <div class="account-info hidden">
+              <div>
+                <img src="../static/assets/profile.svg" alt="profile" class="profile" />
+              </div>
+              <p class="username"></p>
+              <button class="logout-btn">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <section class="transactions">
+          <div class="flex">
+            <h2>Transaction History</h2>
+            <div>
+              <button type="button" class="download">
+                <svg width="31" height="31" viewBox="0 0 31 31" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    id="Vector"
+                    d="M15.5 23.25L5.8125 13.5625L8.525 10.7531L13.5625 15.7906V0H17.4375V15.7906L22.475 10.7531L25.1875 13.5625L15.5 23.25ZM0 31V21.3125H3.875V27.125H27.125V21.3125H31V31H0Z" />
+                </svg>
+                <span> Download </span>
+              </button>
+              <button type="button" class="btn filter">
+                <svg width="61" height="61" viewBox="0 0 61 61" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    id="Vector"
+                    d="M61 0V6.77778H57.6111L40.6667 32.1944V61H20.3333V32.1944L3.38889 6.77778H0V0H61ZM11.5358 6.77778L27.1111 30.1408V54.2222H33.8889V30.1408L49.4642 6.77778H11.5358Z" />
+                </svg>
+              </button>
+              <dialog class="filter__modal">
+                <h2>Date</h2>
+                <form>
+                  <span>
+                    <label for="from-date">From:</label>
+                    <input autocomplete="off" type="date" name="from-date" id="from-date" />
+                  </span>
+                  <span>
+                    <label for="to-date">To:</label>
+                    <input autocomplete="off" type="date" name="to-date" id="to-date" />
+                  </span>
+                </form>
+                <h2>Category</h2>
+                <div class="category-container">
+                  <input autocomplete="off" id="housing" type="checkbox" name="filter" value="Housing" />
+                  <input autocomplete="off" id="transportation" type="checkbox" name="filter" value="Transportation" />
+                  <input autocomplete="off" id="food" type="checkbox" name="filter" value="Food" />
+                  <input autocomplete="off" id="entertainment" type="checkbox" name="filter" value="Entertainment" />
+                  <input autocomplete="off" id="healthcare" type="checkbox" name="filter" value="Healthcare" />
+                  <input autocomplete="off" id="utilities" type="checkbox" name="filter" value="Utilities" />
+                  <input autocomplete="off" id="debt" type="checkbox" name="filter" value="Debt" />
+                  <input autocomplete="off" id="lent" type="checkbox" name="filter" value="Lent" />
+                  <input autocomplete="off" id="savings" type="checkbox" name="filter" value="Savings" />
+                  <input autocomplete="off" id="shopping" type="checkbox" name="filter" value="Shopping" />
+                  <input autocomplete="off" id="travel" type="checkbox" name="filter" value="Travel" />
+                  <input autocomplete="off" id="gifts-donations" type="checkbox" name="filter" value="Gifts/Donations" />
+                  <input autocomplete="off" id="miscellaneous" type="checkbox" name="filter" value="Miscellaneous" />
+                  <input autocomplete="off" id="other" type="checkbox" name="filter" value="Other" />
+                  <label for="housing" class="category">Housing</label>
+                  <label for="transportation" class="category">Transportation</label>
+                  <label for="food" class="category">Food</label>
+                  <label for="entertainment" class="category">Entertainment</label>
+                  <label for="healthcare" class="category">Healthcare</label>
+                  <label for="utilities" class="category">Utilities</label>
+                  <label for="debt" class="category">Debt</label>
+                  <label for="lent" class="category">Lent</label>
+                  <label for="savings" class="category">Savings</label>
+                  <label for="shopping" class="category">Shopping</label>
+                  <label for="travel" class="category">Travel</label>
+                  <label for="gifts-donations" class="category">Gifts/Donations</label>
+                  <label for="miscellaneous" class="category">Miscellaneous</label>
+                  <label for="other" class="category">Other</label>
+                </div>
+                <div class="btns">
+                  <button type="button" class="btn--cancel">Cancel</button>
+                  <button class="btn--filter">Filter</button>
+                </div>
+              </dialog>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>To/From</th>
+              <td>
+                <button id="sort-button" type="button" class="btn sort">
+                  <img src="../static/assets/sort.svg" alt="" />
+                </button>
+                <div class="sort__select hidden" anchor="sort-button">
+                  <button value="amount_asc">Amount <img src="../static/assets/arrow.svg" alt="" /></button>
+                  <button value="amount_dsc">Amount <img src="../static/assets/arrow.svg" class="sort--dsc" alt="" /></button>
+                  <button value="date_asc">Date <img src="../static/assets/arrow.svg" alt="" /></button>
+                  <button value="date_dsc">Date <img src="../static/assets/arrow.svg" class="sort--dsc" alt="" /></button>
+                </div>
+              </td>
+              <tr class="separation-line">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+      </div>
+      <dialog class="delete-confirmation">
+        <p>Are you sure you want to DELETE this transaction?</p>
+        <div>
+          <button class="cancel">Cancel</button>
+          <button class="delete-transaction">Delete</button>
+        </div>
+      </dialog>
+      <dialog class="edit-modal">
+        <form>
+          <section>
+            <div>
+              <input type="radio" name="income_expense" id="expense" value="expense" checked required />
+              <label for="expense">Expense</label>
+            </div>
+            <div>
+              <input type="radio" name="income_expense" id="income" value="income" required />
+              <label for="income">Income</label>
+            </div>
+          </section>
+          <article>
+            <label for="date">Date:</label>
+            <input required type="date" name="date" id="date" />
+          </article>
+          <article>
+            <label for="amount">Amount:</label>
+            <input required type="number" name="amount" id="amount" pattern="*\d" />
+          </article>
+          <article>
+            <label for="category">Category:</label>
+            <div class="flex">
+              <select name="category" id="category" required>
+                <option value="N/A">N/A</option>
+                <option value="Housing">Housing</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Food">Food</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Debt">Debt</option>
+                <option value="Lent">Lent</option>
+                <option value="Savings">Savings</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Trave">Travel</option>
+                <option value="Gifts/Donations">Gifts/Donations</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="text" placeholder="Custom Message" name="message" autocomplete="off" />
+            </div>
+          </article>
+          <article>
+            <label for="to">To:</label>
+            <input type="text" name="counterparty" id="to" required />
+          </article>
+          <article>
+            <label for="from">From:</label>
+            <input type="text" name="counterparty" id="from" disabled />
+          </article>
+          <div>
+            <button type="button" class="btn--cancel">Cancel</button>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </dialog>
+      <dialog class="alert">
+        <p class="dialog-message"></p>
+        <button class="close">Ok</button>
+      </dialog>
+    </main>
+  </body>
+</html>
