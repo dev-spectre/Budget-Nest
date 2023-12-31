@@ -59,7 +59,12 @@ saveButtons.forEach((btn) => {
 
     let goal = input.id.startsWith("savings") ? "savings" : "budget";
 
-    setGoal(goal, value);
+    try {
+      setGoal(goal, value);
+    } catch (err) {
+      alertUser("Please enter a valid positive number");
+      return;
+    }
     setProgressBar(goal, value);
     const email = localStorage.getItem("email");
     const uid = localStorage.getItem("uid");
@@ -70,7 +75,7 @@ saveButtons.forEach((btn) => {
 
 function setProgressBar(goal, goalValue) {
   const progressBar = document.querySelector(`.${goal} .bar`);
-  const currentValue = Number(document.querySelector(`.${goal} .goal__progress p`).innerText.substring(1).replace(/,/g, ""));
+  const currentValue = +document.querySelector(`.${goal} .goal__progress p`).innerText.substring(1).replace(/,/g, "");
   const percentage = (currentValue / goalValue) * 100;
   progressBar.style.width = `${percentage}%`;
 
@@ -93,7 +98,8 @@ function setProgressBar(goal, goalValue) {
 }
 
 function setGoal(goal, value) {
-  const formattedValue = Number(value).toLocaleString("en-IN");
+  const parsedValue = Number(value).toLocaleString("en-IN");
+  if (isNaN(parsedValue) || parsedValue < 0) throw new Error("Invalid Number");
   const goalAmount = document.querySelector(`.${goal} .goal__amount p`);
   goalAmount.innerText = goalAmount.innerText.charAt(0).concat(formattedValue);
 }
